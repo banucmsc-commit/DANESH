@@ -45,8 +45,8 @@ const AboutPage: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="mt-20 text-center">
-                    <img src="https://images.unsplash.com/photo-1555050551-0937a09f0834?q=80&w=1974&auto=format&fit=crop" alt="Factory" className="rounded-lg shadow-2xl mx-auto"/>
+                <div className="mt-10 text-center">
+                    <img src="https://www.3ds.com/assets/invest/2024-09/ht-master-future-high-tech-manufacturing-symbiotic-value-1920x900.jpg" alt="Factory" className="rounded-lg shadow-xl mx-auto"/>
                 </div>
             </div>
         </div>
