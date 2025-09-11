@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Danesh Industries</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://www.shutterstock.com/image-photo/chemical-plant-refinery-industrial-equipment-260nw-2483639627.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
     <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            'brand-blue': '#0067C5',
-            'brand-yellow': '#FFC400',
-            'brand-dark': '#1A202C',
-            'brand-light': '#F7FAFC',
-            'brand-gray': '#4A5568',
-          }
+        //   colors: {
+        //     'brand-blue': '#0067C5',
+        //     'brand-yellow': '#FFC400',
+        //     'brand-dark': '#1A202C',
+        //     'brand-light': '#F7FAFC',
+        //     'brand-gray': '#4A5568',
+        //   }
         }
       }
     }
@@ -33,7 +41,7 @@
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
-    <div id="root"></div>
+<div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>
 </html>
