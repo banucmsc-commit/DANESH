@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
-                className="menu-item-hover text-brand-dark hover:text-white hover:bg-gradient-to-r hover:from-orange-300 hover:to-pink-300 hover:bg-opacity-90 block px-4 py-3 rounded-lg text-base font-medium transition-all duration-500 hover:scale-105 hover:shadow-md border border-transparent hover:border-orange-400 w-full text-center"
+                className="menu-item-hover text-brand-dark hover:text-brand-blue hover:bg-gradient-to-r hover:from-brand-yellow hover:to-brand-blue hover:bg-opacity-20 block px-4 py-3 rounded-lg text-base font-medium transition-all duration-500 hover:scale-105 hover:shadow-md border border-transparent hover:border-brand-yellow w-full text-center"
                 style={({ isActive }) => (isActive ? activeLinkStyle : {})}
               >
                 {link.name}
