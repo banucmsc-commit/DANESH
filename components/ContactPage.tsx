@@ -34,11 +34,11 @@ const ContactPage: React.FC = () => {
       <style dangerouslySetInnerHTML={{
         __html: `
           @keyframes contact-slideshow {
-            0% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=2070&auto=format&fit=crop'); }
-            25% { background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop'); }
-            50% { background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop'); }
-            75% { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop'); }
-            100% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=2070&auto=format&fit=crop'); }
+              0% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=4000&auto=format&fit=crop'); }
+              25% { background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=4000&auto=format&fit=crop'); }
+              50% { background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=4000&auto=format&fit=crop'); }
+              75% { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=4000&auto=format&fit=crop'); }
+              100% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=4000&auto=format&fit=crop'); }
           }
           @keyframes fade-in {
             from { opacity: 0; transform: translateY(20px); }
@@ -115,7 +115,7 @@ const ContactPage: React.FC = () => {
                   <textarea name="message" id="message" rows={4} required value={formData.message} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue hover:border-brand-blue transition-colors duration-300"></textarea>
                 </div>
                 <div>
-                  <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-brand-blue hover:opacity-90 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-blue transition-all duration-300">
+                  <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:opacity-90 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition-all duration-300">
                     Send Message
                   </button>
                 </div>
