@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from './SEO';
+import ContactPopup from './ContactPopup';
 
 const highlights = [
 	{
@@ -132,6 +134,12 @@ const testimonials = [
 
 const HomePage: React.FC = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [showContactPopup, setShowContactPopup] = useState(false);
+
+	useEffect(() => {
+		// Show contact popup immediately for testing
+		setShowContactPopup(true);
+	}, []);
 
 	const handlePrev = () => {
 		setCurrentIndex((prevIndex) =>
@@ -153,8 +161,36 @@ const HomePage: React.FC = () => {
 		backgroundAttachment: 'fixed', // This makes the background fixed while scrolling
 	};
 
+	const organizationStructuredData = {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Danesh Industries",
+		"description": "Manufacturer of precision machined parts, socket weld fittings, flanges, valves, and assemblies for industrial applications.",
+		"url": "https://daneshindustries.com",
+		"logo": "https://daneshindustries.com/logos/daneshlogo.jpg",
+		"contactPoint": {
+			"@type": "ContactPoint",
+			"telephone": "+91-XXXX-XXXXXX", // Replace with actual phone
+			"contactType": "Customer Service"
+		},
+		"address": {
+			"@type": "PostalAddress",
+			"addressCountry": "IN"
+		},
+		"sameAs": [
+			// Add social media URLs if available
+		]
+	};
+
 	return (
 		<>
+			<SEO
+			  title="Danesh Industries - Precision Machined Parts Manufacturer"
+			  description="Leading manufacturer of precision machined parts, socket weld fittings, flanges, valves, and industrial assemblies. Serving oil & gas, petrochemical, and process industries with global quality standards."
+			  keywords="precision machining, industrial fittings, flanges, valves, socket weld fittings, Danesh Industries, manufacturing, oil & gas components, OEM spare parts, pump spare parts, valve components, pipe fittings, stainless steel flanges, carbon steel flanges, industrial valves, mechanical engineering, reverse engineering, CNC machining, industrial manufacturing, petrochemical equipment, water treatment parts, HVAC components, process industry equipment, custom machining, bulk manufacturing, quality assurance, ASME standards, ASTM standards, DIN standards, industrial supplies Chennai, mechanical components manufacturer, engineering spare parts, durable industrial solutions, high-performance valves, reliable pipe fittings, precision engineering, industrial automation parts"
+			  url="/"
+			  structuredData={organizationStructuredData}
+			/>
 			<style
 				dangerouslySetInnerHTML={{
 					__html: `
@@ -352,6 +388,12 @@ const HomePage: React.FC = () => {
 					</div>
 				</div>
 			</section>
+
+			{/* Contact Popup */}
+			<ContactPopup
+				isOpen={showContactPopup}
+				onClose={() => setShowContactPopup(false)}
+			/>
 		</>
 	);
 };

@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import SEO from './SEO';
 
 const PRODUCT_IMAGE = 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+const getProductDescription = (category: string) => {
+                return `Leading manufacturer and supplier of ${category}, flanges, fittings, valves, and industrial components. Danesh Industries offers high-quality ${category.toLowerCase()} manufacturing in Chennai, India. We specialize in precision-engineered products meeting international standards. Contact us for ${category.toLowerCase()}, industrial valves, and fittings requirements.`;
+            };
 
+const getProductKeywords = (category: string) => {
+    return `${category}, flanges, fittings, valves, Danesh Industries, flanges manufacturer in chennai, flanges manufacturer in india, ${category.toLowerCase()} manufacturer in chennai, ${category.toLowerCase()} manufacturer in india`;
+};
 // Data extracted from the user-provided document
 const productData = [
     {
@@ -67,12 +74,12 @@ const productData = [
         items: [
             {
                 name: 'Slip-On Flanges',
-                image: PRODUCT_IMAGE,
+                image: '/ss-slip-on-flangesimage.jpg',
                 keyFeatures: ['Easy to install and align', 'Ideal for low-pressure applications', 'Commonly used in piping systems where quick assembly is required']
             },
             {
                 name: 'Butt Weld Flanges',
-                image: PRODUCT_IMAGE,
+                image: '/weldneckimage.jpeg',
                 keyFeatures: ['Strong, durable, and ideal for high-pressure and high-temperature applications', 'Provides structural reinforcement to piping systems']
             },
             {
@@ -1258,12 +1265,63 @@ const ProductsPage: React.FC = () => {
     const handleItemSelect = (categoryId: string, itemName: string) => {
         setSelectedItem(prev => ({ ...prev, [categoryId]: itemName }));
         navigate(`/products/${categoryId}/${encodeURIComponent(itemName)}`);
+        // Scroll to the product details after a short delay
+        setTimeout(() => {
+            const element = document.getElementById(`product-${encodeURIComponent(itemName)}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100);
     };
     const handleSectionSelect = (categoryId: string, section: string) => {
         setSelectedSection(prev => ({ ...prev, [categoryId]: section }));
     };
+    // Dynamic SEO
+    const currentCategory = productData.find(cat => cat.id === selectedCategory);
+    const currentProduct = currentCategory?.items.find(item => item.name === selectedItem[selectedCategory]);
+
+    let seoTitle = "Our Products - Danesh Industries";
+    let seoDescription = "Explore our comprehensive range of precision machined parts, flanges, fittings, valves, and industrial components manufactured to global standards.";
+    let seoUrl = "/products";
+
+    if (selectedCategory && currentCategory) {
+        seoTitle = `${currentCategory.category} - Danesh Industries`;
+        seoDescription = currentCategory.introduction;
+        seoUrl = `/products/${selectedCategory}`;
+
+        if (currentProduct) {
+            seoTitle = `${currentProduct.name} - ${currentCategory.category} | Danesh Industries`;
+            seoDescription = (currentProduct as any).keyFeatures ? (currentProduct as any).keyFeatures.join('. ') : (currentProduct as any).description || seoDescription;
+            seoUrl = `/products/${selectedCategory}/${encodeURIComponent(currentProduct.name)}`;
+        }
+    }
+
+    const productStructuredData = currentProduct ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": currentProduct.name,
+        "description": (currentProduct as any).keyFeatures ? (currentProduct as any).keyFeatures.join('. ') : (currentProduct as any).description || currentCategory?.introduction,
+        "brand": {
+            "@type": "Brand",
+            "name": "Danesh Industries"
+        },
+        "category": currentCategory?.category,
+        "manufacturer": {
+            "@type": "Organization",
+            "name": "Danesh Industries"
+        }
+    } : null;
+
     return (
         <>
+            
+            <SEO
+                title={seoTitle}
+                description={getProductDescription(currentCategory?.category || 'Industrial Components')}
+                keywords={getProductKeywords(selectedCategory)}     
+                url={seoUrl}
+                structuredData={productStructuredData}
+            />
             <style dangerouslySetInnerHTML={{
                 __html: `
                     @keyframes products-slideshow {
@@ -1540,7 +1598,9 @@ const ProductsPage: React.FC = () => {
                                     ))}
                                 </select>
                                 {selectedItem[categoryData.id] && (
-                                    <ProductDetail item={categoryData.items.find(item => item.name === selectedItem[categoryData.id])} />
+                                    <div id={`product-${encodeURIComponent(selectedItem[categoryData.id])}`}>
+                                        <ProductDetail item={categoryData.items.find(item => item.name === selectedItem[categoryData.id])} />
+                                    </div>
                                 )}
                             </div>
                         </section>
