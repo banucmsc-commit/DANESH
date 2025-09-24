@@ -59,11 +59,10 @@ const ServicesPage: React.FC = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                     @keyframes services-slideshow {
-                        0% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=4000&auto=format&fit=crop'); }
-                        25% { background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=4000&auto=format&fit=crop'); }
-                        50% { background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=4000&auto=format&fit=crop'); }
-                        75% { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=4000&auto=format&fit=crop'); }
-                        100% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=4000&auto=format&fit=crop'); }
+                        0% { background-image: url('/service1.jpg'); }
+                        33.33% { background-image: url('/service2.jpg'); }
+                        66.66% { background-image: url('/service4.jpg'); }
+                        100% { background-image: url('/service1.jpg'); }
                     }
                     @keyframes fade-in {
                         from { opacity: 0; transform: translateY(20px); }

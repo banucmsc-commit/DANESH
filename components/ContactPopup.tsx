@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ContactPopup: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -16,7 +16,7 @@ const ContactPopup: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOp
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', message: '' });
       onClose();
     }, 2000);
   };
@@ -25,9 +25,16 @@ const ContactPopup: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOp
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl w-full max-w-md p-4">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-50 rounded-lg shadow-xl w-full max-w-md p-4">
         <div className="flex justify-between items-center p-6 border-b border-brand-light">
-          <h3 className="text-xl font-bold text-brand-dark">Contact Us</h3>
+          <div className="flex items-center space-x-3">
+            <img
+              src="/logos/daneshlogo.jpg"
+              alt="Danesh Industries Logo"
+              className="w-12 h-12 object-contain"
+            />
+            <h3 className="text-xl font-bold text-brand-dark">Contact Us</h3>
+          </div>
           <button
             onClick={onClose}
             className="text-brand-gray hover:text-brand-dark text-2xl transition-colors duration-300"
@@ -75,6 +82,21 @@ const ContactPopup: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOp
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-brand-light rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue hover:border-brand-blue transition-colors duration-300"
                     placeholder="Enter your email"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-brand-dark mb-1">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-brand-light rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue hover:border-brand-blue transition-colors duration-300"
+                    placeholder="Enter your phone number"
                   />
                 </div>
 

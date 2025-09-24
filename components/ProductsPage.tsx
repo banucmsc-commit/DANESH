@@ -131,12 +131,12 @@ const productData = [
         items: [
             {
                 name: 'Socket Weld MS Flanges',
-                image: PRODUCT_IMAGE,
+                image: '/socketwelt.png',
                 keyFeatures: ['Designed for smaller pipe sizes and lower pressure applications', 'Easy to weld and install, ensuring a smooth and secure seal', 'Widely used in plumbing, HVAC, and water distribution systems']
             },
             {
                 name: 'Weld Neck MS Flanges',
-                image: PRODUCT_IMAGE,
+                image: '/msflanges.png',
                 keyFeatures: ['Heavier duty flanges for high-pressure and high-temperature applications', 'Long tapered hub design ensures stress distribution and resistance to warping', 'Commonly used in oil refineries, petrochemicals, and power plants']
             }
         ]
@@ -175,7 +175,7 @@ const productData = [
         items: [
             {
                 name: 'SS 304 Slip-On Flanges',
-                image: '/ss-slip-on-flangesimage.jpg',
+                image: '/ss304slip.png',
                 keyFeatures: ['Durability', 'Corrosion Resistance', 'Versatility', 'Affordability']
             },
             {
@@ -1167,7 +1167,7 @@ const AccordionItem: React.FC<{ title: string; children: React.ReactNode; isOpen
     );
 };
 
-const ProductDetail: React.FC<{ item: any }> = ({ item }) => {
+const ProductDetail: React.FC<{ item: any; categoryId: string }> = ({ item, categoryId }) => {
     const renderList = (items: string[]) => (
         <ul className="list-none pl-5 space-y-1">
             {items.map((text, index) => <li key={index} className="flex items-center"><span className="text-green-500 mr-2">✔</span>{text}</li>)}
@@ -1200,7 +1200,7 @@ const ProductDetail: React.FC<{ item: any }> = ({ item }) => {
 
     return (
         <div className="space-y-4">
-            {item.images && Array.isArray(item.images) ? (
+            {item.images && Array.isArray(item.images) && categoryId !== 'flanges' ? (
                 <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                     {item.images.map((img, idx) => (
                         <img
@@ -1212,7 +1212,7 @@ const ProductDetail: React.FC<{ item: any }> = ({ item }) => {
                         />
                     ))}
                 </div>
-            ) : item.image && (
+            ) : item.image && categoryId !== 'flanges' && !( (item.name === "Socket Weld MS Flanges" || item.name === "Weld Neck MS Flanges") && categoryId === 'ms-flanges' ) && (
                 <div className="mb-6">
                     <img
                         src={item.image}
@@ -1223,13 +1223,373 @@ const ProductDetail: React.FC<{ item: any }> = ({ item }) => {
                 </div>
             )}
             {item.description && <p className="text-lg">{item.description}</p>}
-            {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
-            {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
-            {item.keyFeatures && (<div><h4 className="text-lg font-semibold mb-2">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
-            {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
-            {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
-            {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
-            {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+            {item.name === "Plug Valve Components" ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Plug Valve Components</h4>
+                        <img
+                            src="/plugvalvecomponentsimage.png"
+                            alt="Plug Valve Components"
+                            className="w-64 h-94 object-cover rounded-lg shadow-lg"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.keyFeatures && (<div className="p-4 bg-gray-50 rounded-lg"><h4 className="text-xl font-bold mb-3 text-brand-blue">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {categoryId === 'ms-flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                        {categoryId === 'flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Slip-On Flanges" && categoryId === 'flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Slip-On Flanges</h4>
+                        <img
+                            src="/ss-slip-on-flangesimage.jpg"
+                            alt="Slip-On Flanges"
+                            className="w-64 h-94 object-cover rounded-lg shadow-lg"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.keyFeatures && (<div className="p-4 bg-gray-50 rounded-lg"><h4 className="text-xl font-bold mb-3 text-brand-blue">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {categoryId === 'flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                    </div>
+                </div>
+            ) : item.name === "Butt Weld Flanges" && categoryId === 'flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0 text-center">
+                        <h4 className="text-lg font-semibold mb-2 text-orange-400">Butt Weld Flanges</h4>
+                        <img
+                            src="/buttweltimage.png"
+                            alt="Butt Weld Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.keyFeatures && categoryId !== 'ms-flanges' && (<div><h4 className="text-lg font-semibold mb-2">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                        {categoryId === 'flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Socket Weld Flanges" && categoryId === 'flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Socket Weld Flanges</h4>
+                        <img
+                            src="/socketweltflanges.png"
+                            alt="Socket Weld Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.keyFeatures && (<div><h4 className="text-lg font-semibold mb-2">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                        {categoryId === 'flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Threaded Flanges" && categoryId === 'flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Threaded Flanges</h4>
+                        <img
+                            src="/threadedflanges.png"
+                            alt="Threaded Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.keyFeatures && (<div><h4 className="text-lg font-semibold mb-2">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                        {categoryId === 'flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Blind Flanges" && categoryId === 'flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Blind Flanges</h4>
+                        <img
+                            src="/blindflanges.png"
+                            alt="Blind Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.keyFeatures && (<div className="p-4 bg-gray-50 rounded-lg"><h4 className="text-xl font-bold mb-3 text-brand-blue">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                        {categoryId === 'flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Lap Joint Flanges" && categoryId === 'flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Lap Joint Flanges</h4>
+                        <img
+                            src="/lapjoint.png"
+                            alt="Lap Joint Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.keyFeatures && (<div><h4 className="text-lg font-semibold mb-2">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                        {categoryId === 'flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Stem for Ball Valve" ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Stem Ball Valve Components</h4>
+                        <img
+                            src="/stemforballvalve.png"
+                            alt="Stem for Ball Valve"
+                            className="w-64 h-64 object-cover rounded-lg shadow-lg"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                        {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                        {item.keyFeatures && (<div><h4 className="text-lg font-semibold mb-2">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                        {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                        {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                        {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                        {categoryId === 'valve-components' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Socket Weld MS Flanges" && categoryId === 'ms-flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">Socket Weld MS Flanges</h4>
+                        <img
+                            src="/socketwelt.png"
+                            alt="Socket Weld MS Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.keyFeatures && (<div className="p-4 bg-gray-50 rounded-lg"><h4 className="text-xl font-bold mb-3 text-brand-blue">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {categoryId === 'ms-flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "Weld Neck MS Flanges" && categoryId === 'ms-flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0 text-center">
+                        <h4 className="text-lg font-semibold mb-2 text-orange-400">Weld Neck MS Flanges</h4>
+                        <img
+                            src="/msflanges.png"
+                            alt="Weld Neck MS Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.keyFeatures && (<div className="p-4 bg-gray-50 rounded-lg"><h4 className="text-xl font-bold mb-3 text-brand-blue">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {categoryId === 'ms-flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "SS 304 Slip-On Flanges" && categoryId === 'ss-304-flanges' ? (
+                <div className="flex flex-col gap-6">
+                    <div className="flex-shrink-0">
+                        <h4 className="text-lg font-semibold mb-2 text-center text-orange-400">SS 304 Slip-On Flanges</h4>
+                        <img
+                            src="/ss304slip.png"
+                            alt="SS 304 Slip-On Flanges"
+                            className="w-64 h-94 object-cover rounded-lg shadow-lg"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.keyFeatures && (<div className="p-4 bg-gray-50 rounded-lg"><h4 className="text-xl font-bold mb-3 text-brand-blue">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {categoryId === 'ss-304-flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : item.name === "SS 304 Weld Neck Flanges" && categoryId === 'ss-304-flanges' ? (
+                <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex-shrink-0 text-center">
+                        <h4 className="text-lg font-semibold mb-2 text-orange-400">SS 304 Weld Neck Flanges</h4>
+                        <img
+                            src="/ss-304-weld-neck-flanges-image.jpeg"
+                            alt="SS 304 Weld Neck Flanges"
+                            className="w-96 h-100 object-cover rounded-lg shadow-lg mx-auto"
+                        />
+                    </div>
+                    <div className="flex-1 space-y-4">
+                        {item.keyFeatures && (<div className="p-4 bg-gray-50 rounded-lg"><h4 className="text-xl font-bold mb-3 text-brand-blue">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                        {categoryId === 'ss-304-flanges' && (
+                            <div className="mt-6 text-center">
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                    Order Now
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : (
+                <>
+                    {item.specifications && (<div><h4 className="text-lg font-semibold mb-2">Specifications</h4>{renderTable(item.specifications)}</div>)}
+                    {item.additionalInfo && (<div><h4 className="text-lg font-semibold mb-2">Additional Information</h4>{renderTable(item.additionalInfo)}</div>)}
+                    {item.keyFeatures && (<div><h4 className="text-lg font-semibold mb-2">Key Features</h4>{renderList(item.keyFeatures)}</div>)}
+                    {item.additionalNote && <p className="text-lg text-white  italic">{item.additionalNote}</p>}
+                    {item.advantages && (<div><h4 className="text-lg font-semibold mb-2">Advantages</h4>{renderList(item.advantages)}</div>)}
+                    {item.applications && (<div><h4 className="text-lg font-semibold mb-2">Applications</h4>{renderList(item.applications)}</div>)}
+                    {item.faq && (<div><h4 className="text-lg font-semibold mb-2">FAQs</h4>{renderFaq(item.faq)}</div>)}
+                    {categoryId === 'valve-components' && (
+                        <div className="mt-6 text-center">
+                            <a
+                                href="/contact"
+                                className="inline-block px-6 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                            >
+                                Order Now
+                            </a>
+                        </div>
+                    )}
+                </>
+            )}
         </div>
     );
 };
@@ -1361,7 +1721,7 @@ const ProductsPage: React.FC = () => {
                     }
                 `
             }} />
-            <div className="bg-brand-dark py-20 relative" style={{ backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage: 'url(/stockvalve.jpg.png)' }}>
+            <div className="bg-brand-dark py-20 relative" style={{ backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage: 'url(/techno2.jpg)' }}>
                 <div className="absolute inset-0 bg-blue-900 opacity-40"></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-16 animate-fade-in">
@@ -1371,9 +1731,9 @@ const ProductsPage: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="sticky top-16 bg-brand-light py-4 z-40 mb-12 border-b-2 border-brand-yellow">
-                    <div className="container mx-auto flex justify-center items-center space-x-4 md:space-x-8 overflow-x-auto whitespace-nowrap">
-                        <h3 className="hidden md:block font-bold text-white flex-shrink-0">Navigate to:</h3>
+                    <div className="sticky top-16 bg-brand-light py-0.5 z-40 mb-12 border-b-2 border-brand-yellow w-fit">
+                    <div className="flex justify-start items-center space-x-4 md:space-x-8 overflow-x-auto whitespace-nowrap pl-2">
+                        {/* <h3 className="hidden md:block font-bold text-white flex-shrink-0">Navigate to:</h3> */}
                         <select
                             value={selectedCategory}
                             onChange={(e) => {
@@ -1385,7 +1745,7 @@ const ProductsPage: React.FC = () => {
                                     navigate('/products');
                                 }
                             }}
-                            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                            className="p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue"
                             style={{ backgroundColor: '#FFC400' }}
                         >
                             <option value="">Select a category</option>
@@ -1419,8 +1779,30 @@ const ProductsPage: React.FC = () => {
                     {productData.filter(cat => !selectedCategory || selectedCategory === cat.id).map((categoryData, catIndex) => (
                         <section key={categoryData.id} id={categoryData.id} className="mb-20 scroll-mt-32 animate-fade-in" style={{ animationDelay: `${0.5 + catIndex * 0.2}s` }}>
                             <div className="mb-8">
-                                <h2 className="text-3xl lg:text-4xl font-bold gradient-text-alt mb-4 border-l-4 border-brand-yellow pl-4">{categoryData.category}</h2>
+                                {(categoryData.id === 'valve-components' || categoryData.id === 'flanges' || categoryData.id === 'ms-flanges' || categoryData.id === 'ss-304-flanges') ? (
+                                    <div className="flex justify-between items-center">
+                                        <h2 className="text-3xl lg:text-4xl font-bold gradient-text-alt border-l-4 border-brand-yellow pl-4 mb-4">{categoryData.category}</h2>
+                                        <select
+                                            value={selectedItem[categoryData.id] || ''}
+                                            onChange={(e) => handleItemSelect(categoryData.id, e.target.value)}
+                                            className="p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                                            style={{ backgroundColor: '#FFC400' }}
+                                        >
+                                            <option value="">Select an item</option>
+                                            {categoryData.items.map((item, index) => (
+                                                <option key={index} value={item.name}>{item.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                ) : (
+                                    <h2 className="text-3xl lg:text-4xl font-bold gradient-text-alt mb-4 border-l-4 border-brand-yellow pl-4">{categoryData.category}</h2>
+                                )}
                                 <p className="text-lg text-white ">{categoryData.introduction}</p>
+                                {(categoryData.id === 'valve-components' || categoryData.id === 'flanges' || categoryData.id === 'ms-flanges' || categoryData.id === 'ss-304-flanges') && selectedItem[categoryData.id] && (
+                                    <div className="mt-6 bg-white rounded-lg shadow-lg p-6">
+                                        <ProductDetail item={categoryData.items.find(item => item.name === selectedItem[categoryData.id])} categoryId={categoryData.id} />
+                                    </div>
+                                )}
                                 {categoryData.uses && (
                                     <div className="mt-6">
                                         <h3 className="text-2xl font-bold text-brand-blue mb-4">Uses of Forged Steel Fittings</h3>
@@ -1463,21 +1845,9 @@ const ProductsPage: React.FC = () => {
                                         </ul>
                                     </div>
                                 )}
-                                {categoryData.whyChoose && (
-                                    <div className="mt-6">
-                                        <h3 className="text-2xl font-bold text-brand-blue mb-4">Why Choose Danesh Industries {categoryData.category}?</h3>
-                                        <ul className="list-none space-y-2 text-lg text-white">
-                                            {categoryData.whyChoose.map((point, index) => (
-                                                <li key={index} className="flex items-center">
-                                                    <span className="text-green-500 mr-2">✔</span>{point}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
                                 {categoryData.keyFeatures && (
                                     <div className="mt-6">
-                                        <h3 className="text-2xl font-bold text-brand-blue mb-4">Key Features of {categoryData.category}</h3>
+                                        <h3 className="text-2xl font-bold text-amber-600 mb-4">Key Features of Danesh Industries {categoryData.category}</h3>
                                         <ul className="list-none space-y-2 text-lg text-white">
                                             {categoryData.keyFeatures.map((feature, index) => (
                                                 <li key={index} className="flex items-center">
@@ -1513,7 +1883,7 @@ const ProductsPage: React.FC = () => {
                                 )}
                                 {categoryData.applications && (
                                     <div className="mt-6">
-                                        <h3 className="text-2xl font-bold text-yellow mb-4">Applications of {categoryData.category}</h3>
+                                        <h3 className="text-2xl font-bold text-amber-600 mb-4">Applications of Danesh Industries {categoryData.category}</h3>
                                         <ul className="list-none space-y-2 text-lg text-white">
                                             {categoryData.applications.map((app, index) => (
                                                 <li key={index} className="flex items-center">
@@ -1521,6 +1891,42 @@ const ProductsPage: React.FC = () => {
                                                 </li>
                                             ))}
                                         </ul>
+                                    </div>
+                                )}
+                                {categoryData.whyChoose && (
+                                    <div className="mt-6">
+                                        {categoryData.id === 'valve-components' ? (
+                                            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6">
+                                                <div className="flex-1">
+                                                    <h3 className="text-2xl font-bold text-amber-600 mb-4">Why Choose Danesh Industries {categoryData.category}?</h3>
+                                                    <ul className="list-none space-y-2 text-lg text-white">
+                                                        {categoryData.whyChoose.map((point, index) => (
+                                                            <li key={index} className="flex items-center">
+                                                                <span className="text-green-500 mr-2">✔</span>{point}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                                <div className="flex-shrink-0">
+                                                    <img
+                                                        src="/valve_components.jpg"
+                                                        alt="Valve Components"
+                                                        className="w-64 h-48 object-cover rounded-lg shadow-lg"
+                                                    />
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <h3 className="text-2xl font-bold text-amber-600 mb-4">Why Choose Danesh Industries {categoryData.category}?</h3>
+                                                <ul className="list-none space-y-2 text-lg text-white">
+                                                    {categoryData.whyChoose.map((point, index) => (
+                                                        <li key={index} className="flex items-center">
+                                                            <span className="text-green-500 mr-2">✔</span>{point}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </>
+                                        )}
                                     </div>
                                 )}
                                 {categoryData.selectionGuide && (
@@ -1587,19 +1993,21 @@ const ProductsPage: React.FC = () => {
                                 )}
                             </div>
                             <div className="bg-white rounded-lg shadow-lg p-6">
-                                <select
-                                    value={selectedItem[categoryData.id] || ''}
-                                    onChange={(e) => handleItemSelect(categoryData.id, e.target.value)}
-                                    className="w-full p-3 border border-gray-300 rounded-md mb-6 focus:outline-none focus:ring-2 focus:ring-brand-blue"
-                                >
-                                    <option value="">Select an item</option>
-                                    {categoryData.items.map((item, index) => (
-                                        <option key={index} value={item.name}>{item.name}</option>
-                                    ))}
-                                </select>
-                                {selectedItem[categoryData.id] && (
+                                {(categoryData.id !== 'valve-components' && categoryData.id !== 'flanges' && categoryData.id !== 'ms-flanges' && categoryData.id !== 'ss-304-flanges') && (
+                                    <select
+                                        value={selectedItem[categoryData.id] || ''}
+                                        onChange={(e) => handleItemSelect(categoryData.id, e.target.value)}
+                                        className="w-full p-3 border border-gray-300 rounded-md mb-6 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                                    >
+                                        <option value="">Select an item</option>
+                                        {categoryData.items.map((item, index) => (
+                                            <option key={index} value={item.name}>{item.name}</option>
+                                        ))}
+                                    </select>
+                                )}
+                                {(categoryData.id !== 'valve-components' && categoryData.id !== 'flanges' && categoryData.id !== 'ms-flanges' && categoryData.id !== 'ss-304-flanges') && selectedItem[categoryData.id] && (
                                     <div id={`product-${encodeURIComponent(selectedItem[categoryData.id])}`}>
-                                        <ProductDetail item={categoryData.items.find(item => item.name === selectedItem[categoryData.id])} />
+                                        <ProductDetail item={categoryData.items.find(item => item.name === selectedItem[categoryData.id])} categoryId={categoryData.id} />
                                     </div>
                                 )}
                             </div>

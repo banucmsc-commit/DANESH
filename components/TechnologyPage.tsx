@@ -14,16 +14,11 @@ const TechnologyPage: React.FC = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                     @keyframes tech-slideshow {
-                        0% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=2070&auto=format&fit=crop'); }
-                        11.11% { background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop'); }
-                        22.22% { background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop'); }
-                        33.33% { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop'); }
-                        44.44% { background-image: url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?q=80&w=2070&auto=format&fit=crop'); }
-                        55.55% { background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'); }
-                        66.66% { background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2070&auto=format&fit=crop'); }
-                        77.77% { background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070&auto=format&fit=crop'); }
-                        88.88% { background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2070&auto=format&fit=crop'); }
-                        100% { background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=2070&auto=format&fit=crop'); }
+                        0% { background-image: url('/techno.jpg'); }
+                        25% { background-image: url('/techno1.jpg'); }
+                        50% { background-image: url('/techno2.jpg'); }
+                        75% { background-image: url('/techno3.jpg'); }
+                        100% { background-image: url('/techno.jpg'); }
                     }
                     @keyframes fade-in {
                         from { opacity: 0; transform: translateY(20px); }

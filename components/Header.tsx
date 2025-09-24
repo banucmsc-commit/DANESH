@@ -68,8 +68,8 @@ const Header: React.FC = () => {
               key={link.name}
               to={link.path}
               className={link.name === 'Contact Us'
-                ? "menu-item-hover text-white bg-gradient-to-r from-orange-300 to-pink-300 bg-opacity-90 scale-110 shadow-lg transition-all duration-500 rounded-lg font-semibold border border-orange-400"
-                : "menu-item-hover text-brand-dark hover:text-white hover:bg-gradient-to-r hover:from-orange-300 hover:to-pink-300 hover:bg-opacity-90 hover:scale-110 hover:shadow-lg transition-all duration-500 rounded-lg font-semibold border border-transparent hover:border-orange-400"
+                ? "menu-item-hover text-white bg-gradient-to-r from-orange-300 to-pink-300 bg-opacity-90 scale-110 shadow-lg transition-all duration-500 rounded-lg font-bold border border-orange-400"
+                : "menu-item-hover text-black hover:text-white hover:bg-gradient-to-r hover:from-orange-300 hover:to-pink-300 hover:bg-opacity-90 hover:scale-110 hover:shadow-lg transition-all duration-500 rounded-lg font-bold border border-transparent hover:border-orange-400"
               }
               style={({ isActive }) => (isActive ? activeLinkStyle : {})}
             >
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
           ))}
         </div>
         <div className="lg:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-brand-dark focus:outline-none hover:text-brand-blue transition-colors duration-300">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black focus:outline-none hover:text-brand-blue transition-colors duration-300">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
             </svg>
@@ -94,8 +94,8 @@ const Header: React.FC = () => {
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
                 className={link.name === 'Contact Us'
-                  ? "menu-item-hover text-brand-blue bg-gradient-to-r from-brand-yellow to-brand-blue bg-opacity-20 block px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-500 scale-105 shadow-md border border-brand-yellow w-full text-center"
-                  : "menu-item-hover text-brand-dark hover:text-brand-blue hover:bg-gradient-to-r hover:from-brand-yellow hover:to-brand-blue hover:bg-opacity-20 block px-4 py-2.5 rounded-lg text-base font-semibold transition-all duration-500 hover:scale-105 hover:shadow-md border border-transparent hover:border-brand-yellow w-full text-center"
+                  ? "menu-item-hover text-brand-blue bg-gradient-to-r from-brand-yellow to-brand-blue bg-opacity-20 block px-4 py-2.5 rounded-lg text-base font-bold transition-all duration-500 scale-105 shadow-md border border-brand-yellow w-full text-center"
+                  : "menu-item-hover text-black hover:text-brand-blue hover:bg-gradient-to-r hover:from-brand-yellow hover:to-brand-blue hover:bg-opacity-20 block px-4 py-2.5 rounded-lg text-base font-bold transition-all duration-500 hover:scale-105 hover:shadow-md border border-transparent hover:border-brand-yellow w-full text-center"
                 }
                 style={({ isActive }) => (isActive ? activeLinkStyle : {})}
               >

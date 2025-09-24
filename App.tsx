@@ -167,7 +167,7 @@ const App: React.FC = () => {
           <Footer />
 
           {/* WhatsApp Icon with Sparks Effect */}
-          <div className="fixed bottom-20 right-4 z-50">
+          <div className="fixed bottom-32 right-4 z-50">
             <style dangerouslySetInnerHTML={{
               __html: `
                 @keyframes spark {
@@ -261,7 +261,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Doll Chatbot */}
-          <div className="fixed bottom-4 right-4 z-50">
+          <div className="fixed bottom-4 right-1 z-50">
             <div
               className="relative cursor-pointer"
               onMouseEnter={() => setIsHovered(true)}
@@ -270,7 +270,7 @@ const App: React.FC = () => {
             >
               <svg
                 viewBox="0 0 100 100"
-                className="w-16 h-16 drop-shadow-lg hover:scale-110 transition-transform duration-300"
+                className="w-24 h-24 drop-shadow-lg hover:scale-110 transition-transform duration-300"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 {/* Robot Doll Style */}
@@ -295,7 +295,7 @@ const App: React.FC = () => {
 
           {/* Chatbot Modal */}
           {showChat && (
-            <div className="fixed bottom-20 right-4 z-50">
+            <div className="fixed bottom-20 right-1 z-50">
               <div className="bg-white rounded-lg p-6 w-80 max-w-sm shadow-lg flex flex-col h-96">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-bold text-brand-dark">Danesh Assistant</h3>

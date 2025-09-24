@@ -290,20 +290,62 @@ const HomePage: React.FC = () => {
 				</div>
 			</section>
 			{/* YouTube video embed */}
-			<div className="container mx-auto px-6 py-4 ">
+			{/* <div className="container mx-auto px-6 py-4 ">
 				<div className="flex justify-end"> {/* Aligns content to the right */}
-					<div className="w-full md:w-1/2"> {/* Takes up half width on medium screens and up */}
-						<iframe
+					 {/* <div className="w-full md:w-1/2"> {/* Takes up half width on medium screens and up */}
+						{/* <iframe
 							className='w-full aspect-video rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300'
 							src='https://www.youtube.com/embed/R2eZH0n2Gd0'
 							title='Company Overview'
 							frameBorder='0'
 							allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
 							allowFullScreen
-						></iframe>
+						></iframe> */}
+					{/* </div>  */} 
+				{/* </div> */}
+			{/* </div> */} 
+
+			{/* Sample Videos Section */}
+			<section className="py-20 bg-gray-100">
+				<div className="container mx-auto px-6">
+					<h2 className="text-3xl font-bold text-center text-brand-dark mb-12">Our Machinery in Action</h2>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+						<div className="text-center">
+							<h3 className="text-xl font-semibold text-brand-blue mb-4">Sample 1 Machine Rework</h3>
+							<video
+								className="w-full rounded-lg shadow-lg"
+								controls
+								preload="metadata"
+							>
+								<source src="/sample1.mp4" type="video/mp4" />
+								Your browser does not support the video tag.
+							</video>
+						</div>
+						<div className="text-center">
+							<h3 className="text-xl font-semibold text-brand-blue mb-4">Sample 2 Machine</h3>
+							<video
+								className="w-full rounded-lg shadow-lg"
+								controls
+								preload="metadata"
+							>
+								<source src="/sample2.mp4" type="video/mp4" />
+								Your browser does not support the video tag.
+							</video>
+						</div>
+						<div className="text-center">
+							<h3 className="text-xl font-semibold text-brand-blue mb-4">Sample 3 Machine</h3>
+							<video
+								className="w-full rounded-lg shadow-lg"
+								controls
+								preload="metadata"
+							>
+								<source src="/sample3.mp4" type="video/mp4" />
+								Your browser does not support the video tag.
+							</video>
+						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 
 			{/* Testimonials Section */}
 			<section className='bg-brand-light py-20 relative' style={{ ...backgroundStyle }}>
